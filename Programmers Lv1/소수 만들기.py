@@ -1,16 +1,18 @@
-nums = [1,2,7,6,4]
-cnt = 0
-lst = []
-for i, j, k in nums:
-    num = i+j+k            
-    if lst.count(num) == 0: #중복체크
-        lst.append(num)
-    print(lst)
-for l in lst:#나눌 숫자
-    div_cnt = 0
-    for m in range(1,len(lst)):#나누는 숫자
-        if lst[l] % m == 0:
-            div_cnt += 1
-    if div_cnt == 1:
-        cnt += 1
-print(cnt)
+def solution(nums):
+    cnt = 0
+    lst = []
+    for i in nums:
+        for j in nums[nums.index(i)+1:]:
+            for k in nums[nums.index(j)+1:]:
+                num = i+j+k         
+                if lst.count(num) == 0:
+                    lst.append(num)
+    for l in lst:
+        div_cnt = 0
+        for m in range(1,l+1):
+            if l % m == 0:
+                div_cnt += 1
+        if div_cnt == 2: 
+            cnt += 1
+    return cnt
+#미해결
