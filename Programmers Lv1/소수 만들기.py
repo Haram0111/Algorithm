@@ -1,18 +1,18 @@
+from itertools import combinations        
+def is_prime_number(num):
+    if num==0 or num==1:
+        return False
+    else:
+        for n in range(2, (num//2)+1):    
+            if num%n == 0:
+                return False
+        return True
+
 def solution(nums):
-    cnt = 0
-    lst = []
-    for i in nums:
-        for j in nums[nums.index(i)+1:]:
-            for k in nums[nums.index(j)+1:]:
-                num = i+j+k         
-                if lst.count(num) == 0:
-                    lst.append(num)
-    for l in lst:
-        div_cnt = 0
-        for m in range(1,l+1):
-            if l % m == 0:
-                div_cnt += 1
-        if div_cnt == 2: 
-            cnt += 1
-    return cnt
-#미해결
+    answer = 0
+    cmb = list(combinations(nums,3))     
+    print(cmb)
+    for arr in cmb:
+        if is_prime_number(sum(arr)):     
+            answer += 1                 
+    return answer
