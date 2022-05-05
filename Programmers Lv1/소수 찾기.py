@@ -1,12 +1,10 @@
+import math
+
 def solution(n):
-    lst = list(range(n+1))
-    answer = 0
-    for l in lst:
-        div_cnt = 0
-        for m in range(1,l+1):
-            if l % m == 0:
-                div_cnt += 1
-        if div_cnt == 2: 
-            answer += 1
-    return answer
-#미해결
+    cnt = 0 #소수가 아닌 것을 세는중
+    for i in range(2,n+1):
+        for j in range(1,int(pow(i,1/2))+1):
+            if i % j == 0 and j != 1: #어떤 수로 나누어 떨어졌다라는 증거
+                cnt += 1
+                break
+    return n-cnt-1
