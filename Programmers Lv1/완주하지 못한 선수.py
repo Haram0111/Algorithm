@@ -1,7 +1,7 @@
-participant = ["mislav", "stanko", "mislav", "ana"]
-completion = ["stanko", "ana", "mislav"]
-for i in completion:
-    if i in participant:
-        participant.remove(i)
-print(participant)
-#효율성테스트 미통과
+def solution(participant, completion):
+    participant.sort()
+    completion.sort()
+    for i in range(len(completion)):
+        if participant[i] != completion[i]: 
+             return participant[i]
+    return participant[-1]
