@@ -1,18 +1,14 @@
 def solution(N, stages):
     answer = []
-    falis = dict.fromkeys(range(1,N+1))
-    for i in range(1,N+1):
-        cnt = 0
-        pre = 0
-        for j in stages:
-            if j > i:
-                cnt += 1
-            elif j == i:
-                cnt += 1
-                pre += 1
-        falis[i] = pre / cnt
-    falis = sorted(falis.items(),key=(lambda x: x[1]),reverse=True)
-    for key in falis:
-        answer.append(key[0])
+    length = len(stages)
+    for i in range(1, N+1):
+        cnt = stages.count(i)
+        if length == 0:
+            fail = 0
+        else:
+            fail = cnt / length
+        length -= cnt
+        answer.append((i, fail))
+    answer = sorted(answer, key=lambda x: x[1], reverse=True)
+    answer = [i[0] for i in answer]
     return answer
-#틀림
