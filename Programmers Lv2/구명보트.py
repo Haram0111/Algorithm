@@ -1,16 +1,18 @@
+from collections import deque
+
 def solution(people, limit):
     people.sort()
-    answer = 1
-    weight = 0
-    for i in range(len(people)):
-        if people[i] > limit // 2:
-            answer += len(people) - i
-            print(weight, answer, people[i], i)
-            return answer
+    people = deque(people)
+    answer = 0
+    while len(people) > 1:
+        if people[0] + people[len(people)-1] <= limit:
+            people.popleft()
+            people.pop()
+            answer += 1
         else:
-            if weight + people[i] > limit:
-                weight = people[i]
-                answer += 1
-            else:
-                weight += people[i]
-            print(weight, answer)
+            people.pop()
+            answer += 1
+    if len(people) == 1:
+        return answer + 1
+    else:
+        return answer
