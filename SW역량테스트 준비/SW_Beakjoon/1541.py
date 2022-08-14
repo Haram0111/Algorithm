@@ -1,0 +1,6 @@
+num = list(input())
+num = num.split("+")
+num = num.split("-")
+num = num.split("/")
+num = num.split("*")
+print(num)
