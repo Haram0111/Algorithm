@@ -1,45 +1,23 @@
+def convert(num, base):
+    temp = "0123456789ABCDEF"
+    q, r = divmod(num, base)
+
+    if q == 0:
+        return temp[r]
+    else:
+        # q를 base로 변환
+        # 즉, n진수의 다음 자리를 구함
+        return convert(q, base) + temp[r]
+    
 def solution(n, t, m, p):
-    num = 0
-    seq = 1
-    result = ""
-    while True:
-        if n == 2:
-            a = list(format(num, 'b'))
-            for i in range(len(a)):
-                if len(result) == t:
-                    break
-                if m == p:
-                    if p + m * ((seq//m)-1) == seq:
-                        result = result + a[i]
-                else:
-                    if p + m * (seq//m) == seq:
-                        result = result + a[i]
-                seq += 1
-        elif n == 8:
-            b = list(format(num, 'o'))
-            for i in range(len(b)):
-                if len(result) == t:
-                    break
-                if m == p:
-                    if p + m * ((seq//m)-1) == seq:
-                        result = result + b[i]
-                else:
-                    if p + m * (seq//m) == seq:
-                        result = result + b[i]
-                seq += 1
-        elif n == 16:
-            c = list(format(num, 'x'))
-            for i in range(len(c)):
-                if len(result) == t:
-                    break
-                if m == p:
-                    if p + m * ((seq//m)-1) == seq:
-                        result = result + c[i]
-                else:
-                    if p + m * (seq//m) == seq:
-                        result = result + c[i]
-                seq += 1
-        num += 1
-        if len(result) == t:
-            break
-    return result.upper()
+    answer = ''
+    test = ''
+    
+    for i in range(m*t):
+        test += str(convert(i, n))
+        
+    while len(answer) < t:
+        answer += test[p-1]
+        p += m
+        
+    return answer
