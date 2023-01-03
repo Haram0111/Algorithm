@@ -1,21 +1,22 @@
+import sys
 lst = []
-N = int(input())
+N = int(sys.stdin.readline())
 for i in range(N):
-    a = input()
-    a = a.split(" ")
-    if a[0] == "push":
+    a = sys.stdin.readline().split()
+    order = a[0]
+    if order == "push":
         lst.append(a[1])
-    elif a[0] == "pop":
+    elif order == "pop":
         if len(lst) == 0:
-            print("-1")
+            print(-1)
         else:  print(lst.pop())
-    elif a[0] == "size":
+    elif order == "size":
         print(len(lst))
-    elif a[0] == "empty":
+    elif order == "empty":
         if len(lst) == 0:
-            print("1")
-        else: print("0")
-    elif a[0] == "top":
+            print(1)
+        else: print(0)
+    elif order == "top":
         if len(lst) == 0:
-            print("-1")
+            print(-1)
         else: print(lst[-1])
