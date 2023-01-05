@@ -1,23 +1,8 @@
-land = [[1,2,3,5],[5,6,7,8],[4,3,2,1]]
-sum_lst = []
+def solution(land):
+    for j in range(1, len(land)):
+        land[j][0] += max(land[j-1][1], land[j-1][2], land[j-1][3])
+        land[j][1] += max(land[j-1][2], land[j-1][3], land[j-1][0])
+        land[j][2] += max(land[j-1][3], land[j-1][0], land[j-1][1])
+        land[j][3] += max(land[j-1][0], land[j-1][1], land[j-1][2])
 
-for i in range(len(land[0])): #1,2,3,5 반복
-    pre_index = i
-    sum = land[0][i]
-    for j in range(1,len(land)): #행 반복
-        if land[j].index(max(land[j])) == pre_index: #현재 1이면 index 1이 되면 안됨
-            for n in land[j]:
-                if n < max(land[j]):
-                    second = min(land[j])
-                    if n > second:
-                        second = n
-            sum += second
-            pre_index = land[j].index(second)
-            print(f"{sum},{pre_index}")
-        else:
-            sum += max(land[j])
-            pre_index = land[j].index(max(land[j]))
-            print(f"{sum},{pre_index}")
-    print(f"{i} 번째 입니다.")
-    sum_lst.append(sum)
-print(max(sum_lst))
+    return max(land[-1])
