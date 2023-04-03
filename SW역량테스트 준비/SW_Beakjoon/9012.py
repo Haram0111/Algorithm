@@ -4,9 +4,10 @@ for i in range(N):
     L_cnt = 0
     R_cnt = 0
     if a[0] == ")" or a[len(a)-1] == "(":
-        print("NO")
+        print("1 NO")
     else:
-        for j in range(len(a)):            
+        for j in range(len(a)):
+            print(a[j])           
             if R_cnt > L_cnt:
                 break
             elif a[j] == "(":
@@ -14,6 +15,6 @@ for i in range(N):
             elif a[j] == ")":
                 R_cnt += 1
         if L_cnt != R_cnt:
-            print("NO")
+            print("2 NO")
         else:
             print("Yes")
