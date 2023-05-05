@@ -7,5 +7,4 @@ def solution(targets):
         if target[0] >= e:
             answer += 1
             e = target[1]
-
     return answer
