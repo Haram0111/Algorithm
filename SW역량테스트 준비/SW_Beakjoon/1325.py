@@ -1,11 +1,11 @@
 import sys
-import collections
+from collections import deque
 
 def bfs(start):
     cnt = 1
     visited = [0 for _ in range(n+1)]
     visited[start] = 1
-    queue = collections.deque([start])
+    queue = deque([start])
     while queue:
         u = queue.popleft()
         for v in g[u]:
@@ -16,7 +16,7 @@ def bfs(start):
     return cnt
 
 n, m = map(int, sys.stdin.readline().split())
-g = collections.defaultdict(list)
+g = [ [] for _ in range(n+1) ]
 for _ in range(m):
     a, b = map(int, sys.stdin.readline().split())
     g[b].append(a)
